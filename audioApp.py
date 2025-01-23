@@ -51,7 +51,7 @@ def do_process(query: str):
                 st.error("chat服务器连接失败，请稍后再试")
         except requests.exceptions.ConnectionError as e:
             print(e)
-            st.error("exception服务器连接失败，请稍后再试")
+            st.error(e)
 
 if "messages" not in st.session_state:
     st.session_state.messages = []
