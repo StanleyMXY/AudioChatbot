@@ -44,14 +44,14 @@ def do_process(query: str):
                     with open(f'audio/{response_json["id"]}.mp3', 'wb') as f:
                         f.write(audio_resp.content)
                 else:
-                    st.error("服务器连接失败，请稍后再试")
+                    st.error("download服务器连接失败，请稍后再试")
                 asyncio.run(check_audio(f'audio/{response_json["id"]}.mp3'))
                 requests.post(f"http://0.0.0.0:8000/remove/{response_json["id"]}.mp3")
             else:
-                st.error("服务器连接失败，请稍后再试")
+                st.error("chat服务器连接失败，请稍后再试")
         except requests.exceptions.ConnectionError as e:
             print(e)
-            st.error("服务器连接失败，请稍后再试")
+            st.error("exception服务器连接失败，请稍后再试")
 
 if "messages" not in st.session_state:
     st.session_state.messages = []
