@@ -32,21 +32,21 @@ async def check_audio(audio_path: str):
 def do_process(query: str):
     if query != "":
         try:
-            response = requests.post("http://127.0.0.1:8000/chat?query="+query, timeout=120)
+            response = requests.post("http://0.0.0.0:8000/chat?query="+query, timeout=120)
             if response.status_code == 200:
                 response_json = response.json()
                 st.session_state.messages.append(
                     {"role": "ai", "content": response_json["msg"]["output"]}
                 )
                 st.chat_message("ai").markdown(response_json["msg"]["output"])
-                audio_resp = requests.post(f"http://127.0.0.1:8000/download/{response_json["id"]}.mp3", timeout=300)
+                audio_resp = requests.post(f"http://0.0.0.0:8000/download/{response_json["id"]}.mp3", timeout=300)
                 if audio_resp.status_code == 200:
                     with open(f'audio/{response_json["id"]}.mp3', 'wb') as f:
                         f.write(audio_resp.content)
                 else:
                     st.error("服务器连接失败，请稍后再试")
                 asyncio.run(check_audio(f'audio/{response_json["id"]}.mp3'))
-                requests.post(f"http://127.0.0.1:8000/remove/{response_json["id"]}.mp3")
+                requests.post(f"http://0.0.0.0:8000/remove/{response_json["id"]}.mp3")
             else:
                 st.error("服务器连接失败，请稍后再试")
         except requests.exceptions.ConnectionError as e:
