@@ -46,16 +46,14 @@ def do_process(query: str):
     if query != "":
         try:
             response = audio_bot.run(query)
-            print(response)
-            response_json = response.json()
             st.session_state.messages.append(
-                 {"role": "ai", "content": response["msg"]["output"]}
+                 {"role": "ai", "content": response["output"]}
             )
-            st.chat_message("ai").markdown(response["msg"]["output"])
+            st.chat_message("ai").markdown(response["output"])
             try:
                 unique_id = uuid.uuid4()
                 voice_gen.set_voice_set(audio_bot.voice_set)
-                voice_gen.background_voice_systhesis(response["msg"]["output"], unique_id)
+                voice_gen.background_voice_systhesis(response["output"], unique_id)
                 audio_path = f'audio/{unique_id}.mp3'
                 if os.path.exists(audio_path):
                     st.audio(audio_path, format="audio/mpeg", autoplay=True)
