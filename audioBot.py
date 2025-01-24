@@ -54,7 +54,7 @@ def do_process(query: str):
                 unique_id = uuid.uuid4()
                 voice_gen.set_voice_set(audio_bot.voice_set)
                 voice_gen.background_voice_systhesis(response["output"], unique_id)
-                audio_path = f'audio/{unique_id}.mp3'
+                audio_path = f'{unique_id}.mp3'
                 if os.path.exists(audio_path):
                     st.audio(audio_path, format="audio/mpeg", autoplay=True)
                     st.session_state.messages.append(
