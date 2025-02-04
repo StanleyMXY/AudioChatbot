@@ -18,7 +18,7 @@ os.environ['DASHSCOPE_API_KEY'] = 'sk-f2ffee508ad14054bbd0550634b8573b'
 class AudioBot:
     def __init__(self):
         self.model = ChatTongyi(
-            model_name="qwen-max",
+            model_name="qwen-plus-latest",
             temperature=0.2,
             streaming=True,
         )
