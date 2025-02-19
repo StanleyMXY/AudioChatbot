@@ -4,7 +4,7 @@ import requests
 
 from audiochat.moods import Moods
 
-msskey = "CqixeBPOTn82pOqWU6fSeC002e43vVrov1jZtAg4PkJdWgkfVfqfJQQJ99BAACYeBjFXJ3w3AAAYACOGfRpT"
+msskey = ""
 
 class Voice_generator:
     def __init__(self) :
