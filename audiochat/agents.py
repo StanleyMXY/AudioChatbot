@@ -13,7 +13,7 @@ from audiochat.voice_generator import Voice_generator
 
 dotenv.load_dotenv()
 
-os.environ['DASHSCOPE_API_KEY'] = 'sk-f2ffee508ad14054bbd0550634b8573b'
+os.environ['DASHSCOPE_API_KEY'] = ''
 
 class AudioBot:
     def __init__(self):
